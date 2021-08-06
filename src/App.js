@@ -7,6 +7,12 @@ import TodosList from './components/TodosList';
 function App() {
   const [input, setInput] = useState(" ");
   const [todos, setTodos] = useState([ ]);
+  const [editTodo, setEditTodo] = useState(null);
+
+
+
+
+
   return (
     <div className="App">
       <div className="container">
@@ -16,10 +22,10 @@ function App() {
       <div>
         <Form  input={input} 
         setInput={setInput}
-        todos={todos} setTodos={setTodos}/>
+        todos={todos} setTodos={setTodos}  editTodo={editTodo}  setEditTodo={setEditTodo}/>
       </div>
 
-     <TodosList  todos={todos} setTodos={setTodos}/>
+     <TodosList  todos={todos} setTodos={setTodos} setEditTodo={setEditTodo}/>
       </div>
     </div>
   );
