@@ -22,11 +22,6 @@ const handleEdit = ({id})=>{
 
 
 
-
-
-
-
-
     const handleDelete =({id})=>{
       setTodos(todos.filter((todo)=>todo.id !== id))
 

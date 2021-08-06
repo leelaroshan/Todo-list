@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 
 export default function Form({input, setInput,todos, setTodos, editTodo, setEditTodo}) {
@@ -9,9 +9,20 @@ export default function Form({input, setInput,todos, setTodos, editTodo, setEdit
             todo.id === id ? { title,id,completed} : todo
          )
         setTodos(newTodo);
-        setEditTodo(" ");
+        setEditTodo("");
         
     }
+
+
+useEffect(()=>{
+    if(editTodo){
+        setInput(editTodo.title);
+    }else{
+        setInput("")
+    }
+},[setInput,editTodo])
+
+
 
 
 
@@ -40,9 +51,9 @@ export default function Form({input, setInput,todos, setTodos, editTodo, setEdit
     return (
         <div>
             <form onSubmit={onFormSubmit}>
-            <input type="text"  placeholder="enter a task"  value={input} 
+            <input className="task-input"   type="text"  placeholder="enter a task"  value={input} 
             onChange={onInputChange} required></input>
-            <button  className="add-btn "  type="submit"> Add</button>
+            <button  className="add-btn"  type="submit"> {(editTodo)?  "Update" : "Add"}</button>
             </form>
            
         </div>
