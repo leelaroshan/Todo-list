@@ -1,12 +1,61 @@
 import React from 'react';
 
-export default function TodosList({todos,setTodos}) {
+export default function TodosList({todos,setTodos, setEditTodo}) {
+
+    const handleComplete =(todo)=>{
+      setTodos(todos.map((item)=> {  
+         if(item.id === todo.id){
+           return { ...item, completed: !item.completed}
+         }
+         return item;
+         
+      }))
+
+    }
+
+
+const handleEdit = ({id})=>{
+  const findTodo = todos.find((todo)=> todo.id === id)
+  setEditTodo(findTodo);
+
+}
+
+
+
+
+
+
+
+
+    const handleDelete =({id})=>{
+      setTodos(todos.filter((todo)=>todo.id !== id))
+
+    }
+
+
      return (
         <div>  
-            { todos.map((todo)=>(<li className="todos-list" key={todo.id}>{todo.title}
-                {/* <input type="text" value={todo.title} class="input"
-                onChange={(event)=> event.preventDefault()} /> */}
-             </li>))
+            { todos.map((todo)=>(<li className="list-item" key={todo.id}>
+                <input type="text" value={todo.title} className="input"
+                onChange={(event)=> event.preventDefault()} />
+            <div>  
+            <button className="todo-complete task-button" onClick={()=> handleComplete(todo)}>
+              <i className="fa fa-check-circle"></i>
+            </button>
+            <button className="todo-edit task-button" onClick={()=>handleEdit(todo)}>
+              <i className="fa fa-edit"></i>
+            </button>
+
+            <button className="todo-delete task-button" onClick={()=> handleDelete(todo)}>
+              <i className="fa fa-trash"></i>
+            </button>
+            </div>
+
+             </li>
+             
+             
+             
+             ))
              } 
        </div>
      )
