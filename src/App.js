@@ -15,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="big-container"> 
       <div className="container">
         <div>
         <Header/>
@@ -27,6 +28,7 @@ function App() {
 
      <TodosList  todos={todos} setTodos={setTodos} setEditTodo={setEditTodo}/>
       </div>
+    </div>
     </div>
   );
 }
