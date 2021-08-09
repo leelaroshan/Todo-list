@@ -10,7 +10,9 @@ function App() {
   const [editTodo, setEditTodo] = useState(null);
 
 
+const onClick=()=>{
 
+}
 
 
   return (
@@ -27,7 +29,15 @@ function App() {
       </div>
 
      <TodosList  todos={todos} setTodos={setTodos} setEditTodo={setEditTodo}/>
+     {/* <button className="share-btn" onClick={onClick}>Share</button> */}
+     <a href="https://web.whatsapp.com/"> 
+     <img  className="whatsapp-btn"  src="https://cdn.discordapp.com/attachments/869858371816263710/873239120741273670/pngwing.com.png" width="40px" height="40px">
+
+     </img>
+     </a>
+
       </div>
+      
     </div>
     </div>
   );

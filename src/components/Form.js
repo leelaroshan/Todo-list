@@ -4,6 +4,8 @@ import {v4 as uuidv4} from 'uuid';
 export default function Form({input, setInput,todos, setTodos, editTodo, setEditTodo}) {
 
 
+
+
     const updateTodo = (title,id,completed)=>{
         const newTodo = todos.map((todo)=>  
             todo.id === id ? { title,id,completed} : todo
@@ -51,10 +53,12 @@ useEffect(()=>{
     return (
         <div>
             <form onSubmit={onFormSubmit}>
-            <input className="task-input"   type="text"  placeholder="enter a task"  value={input} 
+            <input className="task-input"   type="text"  placeholder="Enter a todo ..."  value={input} 
             onChange={onInputChange} required></input>
+           
             <button  className="add-btn"  type="submit"> {(editTodo)?  "Update" : "Add"}</button>
             </form>
+
            
         </div>
     )
