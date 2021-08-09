@@ -31,7 +31,7 @@ const handleEdit = ({id})=>{
      return (
         <div>  
             { todos.map((todo)=>(<li className="list-item" key={todo.id}>
-                <input type="text" value={todo.title} className="input"
+                <input type="text" value={todo.title} className={`input ${todo.completed? "complete" : ""}`}
                 onChange={(event)=> event.preventDefault()} />
             <div>  
             <button className="todo-complete task-button" onClick={()=> handleComplete(todo)}>
