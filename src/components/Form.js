@@ -1,10 +1,19 @@
 import React, {useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid';
 
-export default function Form({input, setInput,todos, setTodos, editTodo, setEditTodo}) {
+export default function Form({input, setInput,todos, setTodos, editTodo, setEditTodo, inputRef}) {
 
+    useEffect(() => {
+        inputRef.current.focus()
+    }, [])
 
-
+    useEffect(()=>{
+        if(editTodo){
+            setInput(editTodo.title);
+        }else{
+            setInput("")
+        }
+    },[setInput,editTodo])
 
     const updateTodo = (title,id,completed)=>{
         const newTodo = todos.map((todo)=>  
@@ -14,21 +23,6 @@ export default function Form({input, setInput,todos, setTodos, editTodo, setEdit
         setEditTodo("");
         
     }
-
-
-useEffect(()=>{
-    if(editTodo){
-        setInput(editTodo.title);
-    }else{
-        setInput("")
-    }
-},[setInput,editTodo])
-
-
-
-
-
-
 
 
     const onInputChange =(event)=>{
@@ -50,10 +44,11 @@ useEffect(()=>{
   }
     }
 
+
     return (
         <div>
             <form onSubmit={onFormSubmit}>
-            <input className="task-input"   type="text"  placeholder="Enter a todo ..."  value={input} 
+            <input ref={inputRef} className="task-input" type="text" placeholder="Enter a todo ..." value={input} 
             onChange={onInputChange} required></input>
            
             <button  className="add-btn"  type="submit"> {(editTodo)?  "Update" : "Add"}</button>
